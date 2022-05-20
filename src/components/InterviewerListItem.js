@@ -14,10 +14,11 @@ function InterviewerListItem ({id, name, avatar, selected, setInterviewer}) {
     <li className={interviewerClass} onClick={() => setInterviewer(id)}>
       <img
         className="interviewers__item-image"
-        src="https://i.imgur.com/LpaY82x.png"
-        alt="Sylvia Palmer"
+        src={avatar}
+        alt={name}
       />
-      Sylvia Palmer
+      {/* Checking if the interviewer is selected, if true display name */}
+      {selected && name}
     </li>
   );
 }
