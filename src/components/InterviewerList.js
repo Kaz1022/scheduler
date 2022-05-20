@@ -7,11 +7,10 @@ function InterviewerList ({interviewersData, setInterviewer, interviewer}) {
     return (
       <InterviewerListItem 
         key={eachInterviewer.id}
-        id={eachInterviewer.id}
         name={eachInterviewer.name}
         avatar={eachInterviewer.avatar}
         selected={eachInterviewer.id === interviewer}
-        setInterviewer={setInterviewer} 
+        setInterviewer={() => setInterviewer(eachInterviewer.id)} 
       />
     );
   })
