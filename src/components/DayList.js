@@ -1,7 +1,7 @@
 import React from "react";
 import DayListItem from "./DayListItem";
 
-function DayList({daysData, day, setDay}){
+function DayList({daysData, value, onChange}){
 
    const days = daysData.map(eachDay => {
     return (
@@ -9,8 +9,8 @@ function DayList({daysData, day, setDay}){
         key={eachDay.id}
         name={eachDay.name}
         spots={eachDay.spots}
-        selected={eachDay.name === day}
-        setDay={setDay}
+        selected={eachDay.name === value}
+        setDay={onChange}
         />
     
     );
