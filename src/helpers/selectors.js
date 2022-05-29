@@ -45,3 +45,18 @@ export function getInterview(state, interview) {
   return null;
 
 }
+
+
+export function getInterviewersForDay(state, day) {
+
+
+  const found = state.days.find( eachDay => eachDay.name === day);
+  
+  if(!found) {
+    return [];
+  }
+
+  const InterviewersArray = found.interviewers.map( id => state.interviewers[id]);
+ 
+  return InterviewersArray;
+}
