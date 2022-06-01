@@ -15,8 +15,9 @@ const CREATE = "CREATE";
 const SAVING = "SAVING";
 const DELETING = "DELETING";
 const CONFIRM = "CONFIRM";
+const EDIT = "EDIT";
 
-function Appointment ({id, time, interview, interviewers, bookInterview, cancelInterview}) {
+function Appointment ({ id, time, interview, interviewers, bookInterview, cancelInterview }) {
 
   const { mode, transition, back } = useVisualMode(
       interview ? SHOW : EMPTY
@@ -47,7 +48,7 @@ function Appointment ({id, time, interview, interviewers, bookInterview, cancelI
       {mode === SHOW && <Show 
         student={interview.student} 
         interviewer={interview.interviewer}
-        onEdit={() => console.log("Clicked onEdit")}
+        onEdit={() => transition(EDIT)}
         onDelete={() => transition(CONFIRM)}
         />}
       {mode === CREATE && <Form 
@@ -65,6 +66,13 @@ function Appointment ({id, time, interview, interviewers, bookInterview, cancelI
       message="Are you sure you would like to delete?"
       onConfirm={deleteInterview}
       onCancel={() => back()}
+      />}
+      {mode === EDIT && <Form
+        student={interview.student}
+        interviewer={interview.interviewer.id} 
+        interviewersData={interviewers}
+        onSave={save}
+        onCancel={() => back()}
       />}
     </article>
   );
