@@ -35,9 +35,27 @@ export default function Application(props) {
 
     // Make the request to the app id ednpoints, with the interview data in the body,
     return (
-    axios.put(`http://localhost:8001/api/appointments/${id}`, {interview})
+    axios.put(`http://localhost:8001/api/appointments/${id}`, { interview })
     .then( () => setState({...state, appointments}))
     );
+  }
+
+  function cancelInterview (id) {
+    // console.log("appointment id >>>>", id)
+    const appointment = {
+      ...state.appointments[id],
+      interview: null
+    };
+
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    }
+
+    return (
+      axios.delete(`http://localhost:8001/api/appointments/${id}`)
+      .then(() => setState({...state, appointments})
+      ));
   }
   
   const appointmentsArray = dailyAppointments.map( appointment => {
@@ -53,6 +71,7 @@ export default function Application(props) {
         interview={interview} 
         interviewers={dailyInterviewers}
         bookInterview={bookInterview} 
+        cancelInterview={cancelInterview}
       />
     );
   });
