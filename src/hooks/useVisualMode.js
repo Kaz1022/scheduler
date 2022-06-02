@@ -2,25 +2,30 @@ import {useState} from 'react';
 
 export default function useVisualMode(initial) {
 
-  const [mode, setMode] = useState(initial);
+  // mode will always be the last element of history,
+  // therefore you don't have to create mode state,
+  // just return mode(last element of history array at the bottom)
+
+  // const [mode, setMode] = useState(initial);
   const [history, setHistory] = useState([initial]);
 
   function transition (newMode, replace = false) {
-    setMode(newMode);
+    // setMode(newMode);
+
     if(replace) {
-      history.pop();
+      return setHistory(prev => [...prev.slice(0, -1), newMode]);
     }
-    setHistory([...history, newMode]);
+    setHistory(prev => ([...prev, newMode]));
   }
 
   function back () {
     if(history.length > 1) {
-      history.pop();
-      const length = history.length;
-      setMode(history[length - 1]);
-      setHistory([...history]);
+      setHistory(prev => ([...prev.slice(0, -1)]));
+      // const length = history.length
+      // setMode(history[length - 1]);
     }
   }
 
-  return { mode, transition, back };
+  // returning the last history element as mode
+  return { mode:history[history.length - 1], transition, back };
 };
