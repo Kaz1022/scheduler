@@ -41,12 +41,20 @@ export default function useApplicationData () {
       [id]: appointment
     }
 
-    // Make the request to the app id ednpoints, with the interview data in the body,
+    // Make the request to the app id ednpoints, with the interview data in the body
+    // to change remaining spots on client side, we need the updated api/days data
     return (
       axios.put(`http://localhost:8001/api/appointments/${id}`, { interview })
-      .then( () => setState({...state, appointments}))
-      );
-  }
+      // .then( () => setState({...state, appointments}))
+      .then(() => {
+        return axios.get(`http://localhost:8001/api/days`)
+      })
+      .then((res) => {
+        // console.log("response >>>>", res.data)
+        setState(prev => ({...prev, appointments, days: res.data }));
+      })
+    )
+  };
 
   function cancelInterview (id) {
     // console.log("appointment id >>>>", id)
@@ -62,8 +70,14 @@ export default function useApplicationData () {
 
     return (
       axios.delete(`http://localhost:8001/api/appointments/${id}`)
-      .then(() => setState({...state, appointments})
-      ));
+      // .then(() => setState({...state, appointments}))
+      .then(() => {
+        return axios.get(`http://localhost:8001/api/days`)
+      })
+      .then((res) => {
+        setState(prev => ({...prev, appointments, days: res.data}));
+      })
+    );
   }
 
   return {state, setDay, bookInterview, cancelInterview}
