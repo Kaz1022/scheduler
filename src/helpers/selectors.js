@@ -60,3 +60,17 @@ export function getInterviewersForDay(state, day) {
  
   return InterviewersArray;
 }
+
+
+export function getSpotsForDay (day, appointments) {
+  let spots = 0;
+
+  // iterate the day's appointment ids
+  for (const id of day.appointments) {
+    const appointment = appointments[id];
+    if(!appointment.interview) {
+      spots++;
+    }
+  }
+  return spots;
+}

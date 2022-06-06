@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react';
 import axios from "axios";
+import { getSpotsForDay } from "helpers/selectors";
 
 export default function useApplicationData () {
   const [state, setState] = useState({
@@ -10,6 +11,18 @@ export default function useApplicationData () {
   });
 
   const setDay = day => setState({...state, day});
+
+  const updateSpots = function(state, appointments) {
+    // Get the day Object
+    const dayObj = state.days.find(day => day.name === state.day);
+    const spots = getSpotsForDay(dayObj, appointments);
+
+    const day = {...dayObj, spots};
+
+    const newDays = state.days.map(d => d.name === state.day ? day : d);
+
+    return newDays;
+  }
 
   useEffect(() => {
     const daysURL=`http://localhost:8001/api/days`;
@@ -44,7 +57,9 @@ export default function useApplicationData () {
     // Make the request to the app id ednpoints, with the interview data in the body,
     return (
       axios.put(`http://localhost:8001/api/appointments/${id}`, { interview })
-      .then( () => setState({...state, appointments}))
+      .then( () => {
+        const days = updateSpots(state, appointments);
+        setState({...state, appointments, days})})
       );
   }
 
@@ -62,8 +77,10 @@ export default function useApplicationData () {
 
     return (
       axios.delete(`http://localhost:8001/api/appointments/${id}`)
-      .then(() => setState({...state, appointments})
-      ));
+      .then( () => {
+        const days = updateSpots(state, appointments);
+        setState({...state, appointments, days})})
+      );
   }
 
   return {state, setDay, bookInterview, cancelInterview}
