@@ -6,6 +6,7 @@ function Form ({interviewersData, onSave, onCancel, ...props}) {
 
   const [student, setStudent] = useState(props.student || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
+  const [error, setError] = useState("");
 
   const reset = () => {
     setStudent("");
@@ -18,6 +19,17 @@ function Form ({interviewersData, onSave, onCancel, ...props}) {
   }
 
   const save = () => {
+    // Validate
+    if (student === "") {
+      setError("Student name cannot be blank");
+      return;
+    }
+
+    if (interviewer === null) {
+      setError("Please select an interviewer");
+      return; 
+    }
+
     onSave(student, interviewer)
   }
 
@@ -26,6 +38,7 @@ function Form ({interviewersData, onSave, onCancel, ...props}) {
       <section className="appointment__card-left">
         <form autoComplete="off" onSubmit={event => event.preventDefault()}>
           <input
+            data-testid="student-name-input"
             className="appointment__create-input text--semi-bold"
             name="name"
             type="text"
@@ -34,6 +47,7 @@ function Form ({interviewersData, onSave, onCancel, ...props}) {
             onChange={(event) => setStudent(event.target.value)}
           />
         </form>
+        <section className="appointment__validation">{error}</section>
         <InterviewerList 
           interviewersData={interviewersData}
           onChange={setInterviewer}
