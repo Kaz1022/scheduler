@@ -11,6 +11,7 @@ function Form ({interviewersData, onSave, onCancel, ...props}) {
   const reset = () => {
     setStudent("");
     setInterviewer(null);
+    setError("");
   }
 
   const cancel = () => {
@@ -30,7 +31,8 @@ function Form ({interviewersData, onSave, onCancel, ...props}) {
       return; 
     }
 
-    onSave(student, interviewer)
+    setError("");
+    onSave(student, interviewer);
   }
 
   return (
