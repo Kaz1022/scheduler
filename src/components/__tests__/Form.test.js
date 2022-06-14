@@ -54,26 +54,59 @@ describe("Form", () => {
     expect(getByText(/please select an interviewer/i)).toBeInTheDocument();
     expect(onSave).not.toHaveBeenCalled();
   });
-  
-  it("calls onSave function when the name and interviewer is defined", () => {
-    /* 1. Create the mock onSave function */
+
+  it("can successfully save after trying to submit an empty student name", () => {
     const onSave = jest.fn();
-    /* 2. Render the Form with interviewers, name and the onSave mock function passed as an onSave prop */
-    const { getByText, queryByText } = render(
-    <Form interviewersData={interviewers} 
-    student="Lydia Miller-Jones" 
-    onSave={onSave}
-    interviewer={interviewers[0].id}
-    />);
-  
-    /* 3. Click the save button */
-    const button = getByText("Save")
+    const { getByText, getByPlaceholderText, queryByText } = render(
+      <Form 
+        interviewersData={interviewers} 
+        onSave={onSave}
+        interviewer={interviewers[0].id}
+      />);
+
+    const button = getByText("Save");
+    fireEvent.click(button);
+
+    expect(queryByText(/student name cannot be blank/i)).toBeInTheDocument();
+    expect(onSave).not.toHaveBeenCalled();
+
+    const input = getByPlaceholderText("Enter Student Name");
+    fireEvent.change(input, {target: { value: "Lydia Miller-Jones" } });
+
     fireEvent.click(button);
 
     expect(queryByText(/student name cannot be blank/i)).toBeNull();
-    expect(queryByText(/please select an interviewer/i)).toBeNull();
+
     expect(onSave).toHaveBeenCalledTimes(1);
     expect(onSave).toHaveBeenCalledWith("Lydia Miller-Jones", 1);
+
+  });
+
+  it("calls onCancel and resets the input field", () => {
+    const onCancel = jest.fn();
+    const { getByText, getByPlaceholderText, queryByText } = render(
+      <Form
+        interviewersData={interviewers}
+        interviewer={interviewers[0].id}
+        onSave={jest.fn()}
+        onCancel={onCancel}
+      />
+    );
+
+    const saveButton = getByText("Save");
+    fireEvent.click(saveButton);
+   
+    const input = getByPlaceholderText("Enter Student Name");
+    fireEvent.change(input, {
+      target: { value: "Lydia Miller-Jones" }
+    });
+  
+    const button = getByText("Cancel");
+    fireEvent.click(button);
+  
+    expect(queryByText(/student name cannot be blank/i)).toBeNull();
+    expect(getByPlaceholderText("Enter Student Name")).toHaveValue("");
+    expect(onCancel).toHaveBeenCalledTimes(1);
   });
 
 });
