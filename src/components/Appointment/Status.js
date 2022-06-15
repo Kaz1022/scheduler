@@ -1,6 +1,6 @@
 import React from "react";
 
-function Status ({message}) {
+function Status({ message }) {
   return (
     <main className="appointment__card appointment__card--status">
       <img

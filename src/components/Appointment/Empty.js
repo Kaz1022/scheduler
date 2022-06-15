@@ -1,6 +1,6 @@
 import React from "react";
 
-function Empty ({onAdd}) {
+function Empty({ onAdd }) {
   return (
     <main className="appointment__add">
       <img

@@ -20,7 +20,7 @@ const EDIT = "EDIT";
 const ERROR_SAVE = "ERROR_SAVE";
 const ERROR_DELETE = "ERROR_DELETE";
 
-function Appointment ({ id, time, interview, interviewers, bookInterview, cancelInterview }) {
+function Appointment({ id, time, interview, interviewers, bookInterview, cancelInterview }) {
 
   const { mode, transition, back } = useVisualMode(
       interview ? SHOW : EMPTY
@@ -45,21 +45,19 @@ function Appointment ({ id, time, interview, interviewers, bookInterview, cancel
     .then(() => transition(EMPTY))
     .catch(error => transition(ERROR_DELETE, true));
   }
-
-  // SHOW - CONFIRM 
-        // DELETING
-        // ERROR-DELETING
   
   return (
     <article className="appointment" data-testid="appointment">
       <Header time={time}/>
-      {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
+      {mode === EMPTY && <Empty 
+        onAdd={() => transition(CREATE)} 
+      />}
       {mode === SHOW && <Show 
         student={interview.student} 
         interviewer={interview.interviewer}
         onEdit={() => transition(EDIT)}
         onDelete={() => transition(CONFIRM)}
-        />}
+      />}
       {mode === CREATE && <Form 
         interviewersData={interviewers}
         onSave={save}
@@ -72,9 +70,9 @@ function Appointment ({ id, time, interview, interviewers, bookInterview, cancel
         message="Deleting"
       />}
       {mode === CONFIRM && <Confirm
-      message="Are you sure you would like to delete?"
-      onConfirm={deleteInterview}
-      onCancel={() => back()}
+        message="Are you sure you would like to delete?"
+        onConfirm={deleteInterview}
+        onCancel={() => back()}
       />}
       {mode === EDIT && <Form
         student={interview.student}
