@@ -26,12 +26,18 @@ The front end of this project is built with React and makes requests to an API t
 
 ## Getting Started
 
+### Set Up The API Server
+
+1. Fork and clone the [scheduler-api](https://github.com/lighthouse-labs/scheduler-api).
+2. Follow the README.md instructions.
+3. `npm start` scheduler-api(This must be running in another terminal when you start the app)
+
+### Set Up Scheduler App
+
 1. Fork this repository and clone it onto your local device.
 2. Install dependencies using the `npm install` command.
-3. Fork and clone the [scheduler-api](https://github.com/lighthouse-labs/scheduler-api) into a new directory (NOT within our current scheduler directory) on your host machine. Follow the README.md instructions.
-4. In another termianl, `npm start` scheduler-api.
-5. In your scheduler directory, `npm start` to start the app. It will be served at <http://localhost:8080/>.
-7. Go to <http://localhost:8080/> in your browser.
+3. `npm start` to start the app. It will be served at <http://localhost:8080/>.
+4. Go to <http://localhost:8080/> in your browser.
 
 ## Running Webpack Development Server
 
@@ -52,5 +58,25 @@ npm run storybook
 ```
 ## Dependencies
 
-- Node 12.x or above
-- NPM 5.x or above
+- @testing-library/react-hooks
+- axios
+- classnames
+- normalize.css
+- react
+- react-dom
+- react-scripts
+
+## devDependencies
+
+- @babel/core"
+- @storybook/addon-actions
+- @storybook/addon-backgrounds
+- @storybook/addon-links
+- @storybook/addons
+- @storybook/react
+- @testing-library/jest-dom
+- testing-library/react
+- babel-loader
+- node-sass
+- prop-types
+- react-test-renderer
