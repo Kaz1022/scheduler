@@ -11,16 +11,16 @@ The front end of this project is built with React and makes requests to an API t
 - can also edit or delete appointments
 
 # Final Product
-###  Check different days
+##  Check different days
 ![Different Days](https://github.com/Kaz1022/scheduler/blob/main/docs/different_days.gif?raw=true)
 
-### Book an appointment
+## Book an appointment
 ![Book an appointment](https://github.com/Kaz1022/scheduler/blob/main/docs/book_app.gif?raw=true)
 
-### Edit an appointment 
+## Edit an appointment 
 ![Edit an appointment](https://github.com/Kaz1022/scheduler/blob/main/docs/edit-app.gif?raw=true)
 
-### Delete an appointment 
+## Delete an appointment 
 ![Delete an appointment](https://github.com/Kaz1022/scheduler/blob/main/docs/delete-app.gif?raw=true)
 
 
