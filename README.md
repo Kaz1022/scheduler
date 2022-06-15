@@ -12,18 +12,26 @@ The front end of this project is built with React and makes requests to an API t
 
 # Final Product
 ###  Check different days
+<img src="https://github.com/Kaz1022/scheduler/blob/main/docs/different_days.gif?raw=true" width="500">
 
 ### Book an appointment
+<img src="https://github.com/Kaz1022/scheduler/blob/main/docs/book_appointment.gif?raw=true" width="500">
 
 ### Edit an appointment 
+<img src="https://github.com/Kaz1022/scheduler/blob/main/docs/edit_appointment.gif?raw=true" width="500">
 
 ### Delete an appointment 
-
+<img src="https://github.com/Kaz1022/scheduler/blob/main/docs/delete_appointment.gif?raw=true" width="500">
 
 
 ## Getting Started
 
-Install dependencies with `npm install`.
+1. Fork this repository and clone it onto your local device.
+2. Install dependencies using the `npm install` command.
+3. Fork and clone the [scheduler-api](https://github.com/lighthouse-labs/scheduler-api) into a new directory (NOT within our current scheduler directory) on your host machine. Follow the README.md instructions.
+4. In another termianl, `npm start` scheduler-api.
+5. In your scheduler directory, `npm start` to start the app. It will be served at <http://localhost:8080/>.
+7. Go to <http://localhost:8080/> in your browser.
 
 ## Running Webpack Development Server
 
@@ -42,3 +50,7 @@ npm test
 ```sh
 npm run storybook
 ```
+## Dependencies
+
+- Node 12.x or above
+- NPM 5.x or above
