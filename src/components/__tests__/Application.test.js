@@ -50,12 +50,10 @@ describe("Application", ()=> {
 
     // 9. Check that the DayListItem with the text "Monday" also has the text "no spots remaining".
     const days = getAllByTestId(container, "day");
-    // console.log(prettyDOM(days));
     const day = days.find(day => queryByText(day, "Monday"));
     
     expect(getByText(day, "no spots remaining")).toBeInTheDocument();
     
-    // console.log(prettyDOM(day));
     // debug(day);
   });
 
@@ -133,11 +131,9 @@ describe("Application", ()=> {
 
     // 2. Wait until the text "Archie Cohen" is displayed.
     await waitForElement(() => getByText(container, "Archie Cohen"));
-    // console.log(prettyDOM(container));
     
     // 3. Click the "Add" button on the first empty appointment.
     const appointments = getAllByTestId(container, "appointment");
-    // console.log(prettyDOM(appointments));
     const appointment = appointments[0];
     fireEvent.click(getByAltText(appointment, "Add"));
 

@@ -3,7 +3,7 @@ import React from "react";
 import "components/DayListItem.scss";
 import classNames from "classnames";
 
-export default function DayListItem({selected, spots, name, setDay}) {
+function DayListItem({selected, spots, name, setDay}) {
   
   const dayClass = classNames("day-list__item", {
     "day-list__item--selected": selected,
@@ -29,3 +29,5 @@ export default function DayListItem({selected, spots, name, setDay}) {
     </li>
   );
 };
+
+export default DayListItem;
