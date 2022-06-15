@@ -12,16 +12,16 @@ The front end of this project is built with React and makes requests to an API t
 
 # Final Product
 ###  Check different days
-<img src="https://github.com/Kaz1022/scheduler/blob/main/docs/different_days.gif?raw=true" width="500">
+![Different Days](https://github.com/Kaz1022/scheduler/blob/main/docs/different_days.gif?raw=true)
 
 ### Book an appointment
-<img src="https://github.com/Kaz1022/scheduler/blob/main/docs/book_appointment.gif?raw=true" width="500">
+![Book an appointment]()
 
 ### Edit an appointment 
-<img src="https://github.com/Kaz1022/scheduler/blob/main/docs/edit_appointment.gif?raw=true" width="500">
+![Edit an appointment]()
 
 ### Delete an appointment 
-<img src="https://github.com/Kaz1022/scheduler/blob/main/docs/delete_appointment.gif?raw=true" width="500">
+![Delete an appointment]()
 
 
 ## Getting Started
