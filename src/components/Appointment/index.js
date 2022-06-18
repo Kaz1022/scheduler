@@ -61,7 +61,7 @@ function Appointment({ id, time, interview, interviewers, bookInterview, cancelI
       {mode === CREATE && <Form 
         interviewersData={interviewers}
         onSave={save}
-        onCancel={() => back()}
+        onCancel={back}
       />}
       {mode === SAVING && <Status
         message="Saving"
@@ -72,22 +72,22 @@ function Appointment({ id, time, interview, interviewers, bookInterview, cancelI
       {mode === CONFIRM && <Confirm
         message="Are you sure you would like to delete?"
         onConfirm={deleteInterview}
-        onCancel={() => back()}
+        onCancel={back}
       />}
       {mode === EDIT && <Form
         student={interview.student}
         interviewer={interview.interviewer.id} 
         interviewersData={interviewers}
         onSave={save}
-        onCancel={() => back()}
+        onCancel={back}
       />}
       {mode === ERROR_SAVE && <Error
         message="Cannot be saved."
-        onClose={() => back()}
+        onClose={back}
       />}
       {mode === ERROR_DELETE && <Error
         message="Cannot be canceled."
-        onClose={() => back()}
+        onClose={back}
       />}
     </article>
   );
